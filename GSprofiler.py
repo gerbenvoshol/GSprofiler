@@ -1,6 +1,10 @@
 # 
-# This file is part of the GSprofiler distribution (https://github.com/xxxx or http://xxx.github.io).
-# Copyright (c) 2015 Liviu Ionescu.
+# This file is part of the GSprofiler distribution (https://github.com/gerbenvoshol/GSprofiler).
+# This is a fork from (https://github.com/UBMI-IFC/easyGprofiler) and is a small program to
+# download g:Profiler (https://biit.cs.ut.ee/gprofiler/gost) term enrichment analysis results
+#
+# Copyright (c) 2020 UBMI-IFC.
+# Copyright (c) 2022 Gerben Voshol
 # 
 # This program is free software: you can redistribute it and/or modify  
 # it under the terms of the GNU General Public License as published by  
@@ -21,9 +25,6 @@ import argparse
 from numpy import log10
 import matplotlib.pyplot as plt
 import csv
-
-""" Small program to download gProfiler term enrichment analysis"""
-
 
 def args():
     """Argument parser"""
@@ -51,9 +52,14 @@ def gprofiler(namelist, organism, user_threshold=0.05, method='g_SCS',
 
     Returns a pandas DataFrame with the result
 
+    namelist = list of ensembl gene identifiers
+    organims = hsapiens, mmusculus, rnorvegicus (see: https://biit.cs.ut.ee/gprofiler/page/organism-list)
+    user_threshold = p-value cutoff (only report processes with a p-value lower than this number)
     methods = 'g_SCS', 'bonferroni' and 'fdr'
+    measure_underrepresentation = instead of looking for genes with are present more that expected, look
+                                  for those whoch are present less than expected
+    background = background genes
     simple_out = 3 levels of output 0|1|2
-    background = TO DO!!!!!!!!
     """
     if type(namelist) is not list:
         namelist = list(namelist)
