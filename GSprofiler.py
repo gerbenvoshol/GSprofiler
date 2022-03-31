@@ -22,7 +22,7 @@
 import requests
 import pandas as pd
 import argparse
-from numpy import log10
+import numpy as np
 import matplotlib.pyplot as plt
 import csv
 
@@ -120,7 +120,7 @@ sources = result.source.unique()
 result = result.set_index('name')
 
 for source in sources:
-    subdf = (-log10(result[result.source == source].p_value))
+    subdf = (-np.log10(result[result.source == source].p_value))
     # Top 10
     #subdf = subdf.iloc[:10]
     # All significant processes
