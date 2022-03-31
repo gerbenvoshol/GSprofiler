@@ -73,6 +73,10 @@ def gprofiler(namelist, organism, user_threshold=0.05, method='g_SCS',
         }
     )
     df = pd.DataFrame(r.json()['result'])
+    if df.empty:
+        print(f'No g:profiler results found for {args.infile}!')
+        exit(0)
+
     # manually selecting and sorting output
     cols = ['source', 'native', 'name', 'p_value', 'description', 'query',
             'significant']
