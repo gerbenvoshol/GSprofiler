@@ -6,3 +6,5 @@ Command line tool to get g:Profiler results and some plots from a list of signif
 ```
 $ python GSprofiler.py example_human_genes.sig.tsv hsapiens
 ```
+
+a list of organimsms is available at https://biit.cs.ut.ee/gprofiler/page/organism-list
